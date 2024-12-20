@@ -23,6 +23,9 @@ spring:
     jwtsecret: gfziFwmMo0PiYmCJvpJEXqHVQMREg00VqOkEHee04co=
     jwtExpirationInMs: 3600000
 
+hibernate:
+  physical_naming_strategy: com.baeldung.hibernate.namingstrategy.CustomPhysicalNamingStrategy
+
 cloud:
     aws:
         bucket-name: web-ii

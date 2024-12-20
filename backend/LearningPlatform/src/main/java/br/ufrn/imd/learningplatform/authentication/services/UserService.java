@@ -15,10 +15,14 @@ import java.util.NoSuchElementException;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
     private UserRepository userRepository;
-    @Autowired
     private Mapper mapper;
+
+    @Autowired
+    public UserService(UserRepository userRepository, Mapper mapper) {
+        this.userRepository = userRepository;
+        this.mapper = mapper;
+    }
 
     @Override
     public User loadUserByUsername(String username)  {

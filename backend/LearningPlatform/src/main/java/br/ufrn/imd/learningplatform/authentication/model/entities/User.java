@@ -1,6 +1,8 @@
 package br.ufrn.imd.learningplatform.authentication.model.entities;
 
 import br.ufrn.imd.learningplatform.authentication.model.enums.Role;
+import br.ufrn.imd.learningplatform.domain.model.entities.Organization;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.*;
 
+@MappedSuperclass
 @Entity
 @Table(name = "users")
 public class User implements UserDetails, Serializable {
@@ -26,14 +29,28 @@ public class User implements UserDetails, Serializable {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
+
     public User() {
     }
 
-    public User(String name, String email, String password, Role role) {
+    public User(String name, String email, String password, Role role) { // Revisar esse construtor mais tarde
         this.name = name;
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String id, String name, String email, String password, Role role, Organization organization) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.organization = organization;
     }
 
     public String getId() {
@@ -60,6 +77,22 @@ public class User implements UserDetails, Serializable {
         this.email = email;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
@@ -81,7 +114,6 @@ public class User implements UserDetails, Serializable {
         }
         return authorities;
     }
-
 
     @Override
     public String getPassword() {
@@ -106,5 +138,17 @@ public class User implements UserDetails, Serializable {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
