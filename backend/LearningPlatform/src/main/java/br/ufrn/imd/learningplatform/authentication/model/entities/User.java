@@ -77,6 +77,14 @@ public class User implements UserDetails, Serializable {
         this.email = email;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public Organization getOrganization() {
         return organization;
     }
