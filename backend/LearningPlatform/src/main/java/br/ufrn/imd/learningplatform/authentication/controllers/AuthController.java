@@ -26,7 +26,7 @@ public class AuthController {
         return authService.registerUser(registerRequest);
     }
 
-    @PreAuthorize("hasRole('COMPANY')")
+    @PreAuthorize("hasRole('ORGANIZATION')")
     @GetMapping("/users")
     public String logi2n() {
         return "Greetings from Spring Boot!";

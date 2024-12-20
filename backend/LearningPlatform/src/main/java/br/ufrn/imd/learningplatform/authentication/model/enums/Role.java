@@ -2,8 +2,9 @@ package br.ufrn.imd.learningplatform.authentication.model.enums;
 
 public enum Role {
 
-    ROLE_COMPANY("ROLE_COMPANY"),
+    ROLE_ORGANIZATION("ROLE_ORGANIZATION"),
     ROLE_STUDENT("ROLE_STUDENT"),
+    ROLE_TEACHER("ROLE_TEACHER"),
     ROLE_MANAGER("ROLE_MANAGER");
 
     private String role;

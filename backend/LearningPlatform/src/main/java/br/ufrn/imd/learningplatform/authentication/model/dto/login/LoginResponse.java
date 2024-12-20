@@ -5,7 +5,6 @@ import java.util.List;
 
 public class LoginResponse implements Serializable {
 
-
     private String email;
     private String jwtToken;
     private List<String> roles;

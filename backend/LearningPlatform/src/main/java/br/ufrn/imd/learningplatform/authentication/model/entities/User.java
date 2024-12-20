@@ -67,14 +67,16 @@ public class User implements UserDetails, Serializable {
         authorities.add(new SimpleGrantedAuthority(this.role.name()));
 
         switch (this.role.name()) {
-            case "ROLE_COMPANY":
+            case "ROLE_ORGANIZATION":
                 authorities.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
                 authorities.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
+                authorities.add(new SimpleGrantedAuthority("ROLE_TEACHER"));
                 break;
             case "ROLE_MANAGER":
                 authorities.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
+                authorities.add(new SimpleGrantedAuthority("ROLE_TEACHER"));
                 break;
-            case "ROLE_STUDENT":
+            case "ROLE_STUDENT", "ROLE_TEACHER":
                 break;
         }
         return authorities;
