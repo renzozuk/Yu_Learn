@@ -1,0 +1,3 @@
+CREATE TABLE teachers (
+    id TEXT PRIMARY KEY UNIQUE NOT NULL REFERENCES users(id)
+);

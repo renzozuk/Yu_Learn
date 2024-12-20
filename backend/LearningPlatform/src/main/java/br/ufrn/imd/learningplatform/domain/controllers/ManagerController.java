@@ -26,9 +26,9 @@ public class ManagerController {
         return new ResponseEntity<>(managerService.getManagerById(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<ManagerDTO> createManager(@RequestBody ManagerDTO managerDTO) {
-        return new ResponseEntity<>(managerService.createManager(managerDTO), HttpStatus.CREATED);
+    @PostMapping("/{organizationId}")
+    public ResponseEntity<ManagerDTO> createManager(@PathVariable String organizationId, @RequestBody ManagerDTO managerDTO) {
+        return new ResponseEntity<>(managerService.createManager(organizationId, managerDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

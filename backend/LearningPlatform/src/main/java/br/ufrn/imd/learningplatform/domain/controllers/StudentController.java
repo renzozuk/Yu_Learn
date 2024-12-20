@@ -26,9 +26,9 @@ public class StudentController {
         return new ResponseEntity<>(studentService.getStudentById(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<StudentDTO> createStudent(@RequestBody StudentDTO studentDTO) {
-        return new ResponseEntity<>(studentService.createStudent(studentDTO), HttpStatus.CREATED);
+    @PostMapping("/{organizationId}")
+    public ResponseEntity<StudentDTO> createStudent(@PathVariable String organizationId, @RequestBody StudentDTO studentDTO) {
+        return new ResponseEntity<>(studentService.createStudent(organizationId, studentDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

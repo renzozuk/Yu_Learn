@@ -3,6 +3,7 @@ package br.ufrn.imd.learningplatform.domain.services;
 import br.ufrn.imd.learningplatform.authentication.model.enums.Role;
 import br.ufrn.imd.learningplatform.domain.model.dto.StudentDTO;
 import br.ufrn.imd.learningplatform.domain.model.entities.Student;
+import br.ufrn.imd.learningplatform.domain.repositories.OrganizationRepository;
 import br.ufrn.imd.learningplatform.domain.repositories.StudentRepository;
 import br.ufrn.imd.learningplatform.mapper.modelMapper.MyModelMapper;
 import org.modelmapper.ModelMapper;
@@ -15,11 +16,13 @@ import java.util.List;
 public class StudentService {
 
     private final StudentRepository studentRepository;
+    private final OrganizationRepository organizationRepository;
     private final MyModelMapper mapper;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, MyModelMapper mapper) {
+    public StudentService(StudentRepository studentRepository, OrganizationRepository organizationRepository, MyModelMapper mapper) {
         this.studentRepository = studentRepository;
+        this.organizationRepository = organizationRepository;
         this.mapper = mapper;
     }
 
@@ -34,13 +37,19 @@ public class StudentService {
         return mapper.convertValue(student, StudentDTO.class);
     }
 
-    public StudentDTO createStudent(StudentDTO studentDTO) {
+    public StudentDTO createStudent(String organizationId, StudentDTO studentDTO) {
+
+        var organization = organizationRepository.findById(organizationId).orElseThrow(() -> new RuntimeException("Organization not found."));
 
         var student = mapper.convertValue(studentDTO, Student.class);
-
         student.setRole(Role.ROLE_STUDENT);
+        student.setOrganization(organization);
 
         var createdStudent = studentRepository.save(student);
+
+        organization.getUsers().add(createdStudent);
+
+        organizationRepository.save(organization);
 
         return mapper.convertValue(createdStudent, StudentDTO.class);
     }

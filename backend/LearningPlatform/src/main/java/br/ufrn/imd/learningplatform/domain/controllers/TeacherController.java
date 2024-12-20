@@ -26,9 +26,9 @@ public class TeacherController {
         return new ResponseEntity<>(teacherService.getTeacherById(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<TeacherDTO> createTeacher(@RequestBody TeacherDTO teacherDTO) {
-        return new ResponseEntity<>(teacherService.createTeacher(teacherDTO), HttpStatus.CREATED);
+    @PostMapping("/{organizationId}")
+    public ResponseEntity<TeacherDTO> createTeacher(@PathVariable String organizationId, @RequestBody TeacherDTO teacherDTO) {
+        return new ResponseEntity<>(teacherService.createTeacher(organizationId, teacherDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
