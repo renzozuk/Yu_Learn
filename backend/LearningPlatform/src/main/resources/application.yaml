@@ -4,11 +4,11 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password:
+    password: 1234567
     url: jdbc:postgresql://localhost:5432/learning_platform_db
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
   config:
     import:
       optional:
