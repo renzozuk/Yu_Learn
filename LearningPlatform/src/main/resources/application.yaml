@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: LearningPlatform
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password:
+    url: jdbc:postgresql://localhost:5432/learning_platform_db
+  jpa:
+    hibernate:
+      ddl-auto: update
+  config:
+    import:
+      optional:
+        file: .env[.properties]
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+  app:
+    jwtsecret: gfziFwmMo0PiYmCJvpJEXqHVQMREg00VqOkEHee04co=
+    jwtExpirationInMs: 3600000
+
+hibernate:
+  physical_naming_strategy: com.baeldung.hibernate.namingstrategy.CustomPhysicalNamingStrategy
+
+cloud:
+    aws:
+        bucket-name: web-ii
+        credentials:
+            access-key: AKIA2AUOOUH3GSIH4EW7
+            secret-key: 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
+        region:
+            static: sa-east-1
+        stack:
+            auto: false
+        cloudfront: https://d3byqljg4ahrsb.cloudfront.net/
