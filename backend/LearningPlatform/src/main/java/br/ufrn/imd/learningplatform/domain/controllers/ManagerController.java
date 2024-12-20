@@ -1,5 +1,6 @@
 package br.ufrn.imd.learningplatform.domain.controllers;
 
+import br.ufrn.imd.learningplatform.authentication.model.dto.register.RegisterRequest;
 import br.ufrn.imd.learningplatform.domain.model.dto.ManagerDTO;
 import br.ufrn.imd.learningplatform.domain.services.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class ManagerController {
     }
 
     @PostMapping("/{organizationId}")
-    public ResponseEntity<ManagerDTO> createManager(@PathVariable String organizationId, @RequestBody ManagerDTO managerDTO) {
-        return new ResponseEntity<>(managerService.createManager(organizationId, managerDTO), HttpStatus.CREATED);
+    public ResponseEntity<ManagerDTO> createManager(@PathVariable String organizationId, @RequestBody RegisterRequest registerRequest) {
+        return new ResponseEntity<>(managerService.createManager(organizationId, registerRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

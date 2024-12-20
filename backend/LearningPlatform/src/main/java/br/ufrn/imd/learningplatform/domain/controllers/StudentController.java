@@ -1,5 +1,6 @@
 package br.ufrn.imd.learningplatform.domain.controllers;
 
+import br.ufrn.imd.learningplatform.authentication.model.dto.register.RegisterRequest;
 import br.ufrn.imd.learningplatform.domain.model.dto.StudentDTO;
 import br.ufrn.imd.learningplatform.domain.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class StudentController {
     }
 
     @PostMapping("/{organizationId}")
-    public ResponseEntity<StudentDTO> createStudent(@PathVariable String organizationId, @RequestBody StudentDTO studentDTO) {
-        return new ResponseEntity<>(studentService.createStudent(organizationId, studentDTO), HttpStatus.CREATED);
+    public ResponseEntity<StudentDTO> createStudent(@PathVariable String organizationId, @RequestBody RegisterRequest registerRequest) {
+        return new ResponseEntity<>(studentService.createStudent(organizationId, registerRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

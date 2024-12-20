@@ -11,7 +11,6 @@ public class RegisterRequest implements Serializable {
     private String email;
     private String name;
     private String password;
-    private String role;
 
     public RegisterRequest() {
     }
@@ -20,7 +19,6 @@ public class RegisterRequest implements Serializable {
         this.email = email;
         this.name = name;
         this.password = password;
-        this.role = role;
     }
 
     public String getEmail() {
@@ -45,13 +43,5 @@ public class RegisterRequest implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }

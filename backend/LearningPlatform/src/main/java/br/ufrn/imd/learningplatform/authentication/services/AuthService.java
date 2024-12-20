@@ -94,10 +94,15 @@ public class AuthService {
 
         String name = registerRequest.getName();
         String email = registerRequest.getEmail();
-        String encryptedPassword = passwordEncoder.encode(registerRequest.getPassword());
+        String encryptedPassword = encodePassword(registerRequest.getPassword());
 
-        var role = Role.valueOf(registerRequest.getRole());
+        var role = Role.ROLE_STUDENT;
 
         return new User(name, email, encryptedPassword, role);
     }
+
+    public String encodePassword(String password) {
+        return passwordEncoder.encode(password);
+    }
+
 }

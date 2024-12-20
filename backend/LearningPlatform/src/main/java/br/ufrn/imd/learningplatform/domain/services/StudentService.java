@@ -1,6 +1,8 @@
 package br.ufrn.imd.learningplatform.domain.services;
 
+import br.ufrn.imd.learningplatform.authentication.model.dto.register.RegisterRequest;
 import br.ufrn.imd.learningplatform.authentication.model.enums.Role;
+import br.ufrn.imd.learningplatform.authentication.services.AuthService;
 import br.ufrn.imd.learningplatform.domain.model.dto.StudentDTO;
 import br.ufrn.imd.learningplatform.domain.model.entities.Student;
 import br.ufrn.imd.learningplatform.domain.repositories.OrganizationRepository;
@@ -18,12 +20,14 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final OrganizationRepository organizationRepository;
     private final MyModelMapper mapper;
+    private final AuthService authService;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, OrganizationRepository organizationRepository, MyModelMapper mapper) {
+    public StudentService(StudentRepository studentRepository, OrganizationRepository organizationRepository, MyModelMapper mapper, AuthService authService) {
         this.studentRepository = studentRepository;
         this.organizationRepository = organizationRepository;
         this.mapper = mapper;
+        this.authService = authService;
     }
 
     public List<StudentDTO> getAllStudents() {
@@ -37,11 +41,12 @@ public class StudentService {
         return mapper.convertValue(student, StudentDTO.class);
     }
 
-    public StudentDTO createStudent(String organizationId, StudentDTO studentDTO) {
+    public StudentDTO createStudent(String organizationId, RegisterRequest registerRequest) {
 
         var organization = organizationRepository.findById(organizationId).orElseThrow(() -> new RuntimeException("Organization not found."));
 
-        var student = mapper.convertValue(studentDTO, Student.class);
+        var student = mapper.convertValue(registerRequest, Student.class);
+        student.setPassword(authService.encodePassword(registerRequest.getPassword()));
         student.setRole(Role.ROLE_STUDENT);
         student.setOrganization(organization);
 

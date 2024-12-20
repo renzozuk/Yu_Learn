@@ -1,6 +1,10 @@
 package br.ufrn.imd.learningplatform.authentication.model.dto;
 
 import br.ufrn.imd.learningplatform.domain.model.dto.OrganizationDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -15,6 +19,8 @@ public class UserDTO implements Serializable {
     private String email;
     private String name;
     private List<String> authorities;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private OrganizationDTO organization;
 
     public UserDTO() {
