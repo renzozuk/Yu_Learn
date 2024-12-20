@@ -8,7 +8,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/learning_platform_db
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
   config:
     import:
       optional:
@@ -19,6 +19,9 @@ spring:
       file-size-threshold: 2KB
       max-file-size: 200MB
       max-request-size: 215MB
+  app:
+    jwtsecret: gfziFwmMo0PiYmCJvpJEXqHVQMREg00VqOkEHee04co=
+    jwtExpirationInMs: 3600000
 
 cloud:
     aws:
