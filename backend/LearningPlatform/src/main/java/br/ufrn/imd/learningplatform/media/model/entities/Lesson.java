@@ -1,5 +1,8 @@
 package br.ufrn.imd.learningplatform.media.model.entities;
 
+import java.util.List;
+import java.util.Objects;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -10,9 +13,55 @@ public abstract class Lesson {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    // Outros atributos
+    private String title;
+    private String description;
+    private String thumbnailUrl;
+    @ElementCollection
+    @CollectionTable(name = "lesson_categories", joinColumns = @JoinColumn(name = "lesson_id"))
+    @Column(name = "category")
+    private List<String> categories;
 
-    // Construtor
+    public Lesson() {}
+
+    public Lesson(String id, String title, String description, List<String> categories, String thumbnailUrl) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.categories = categories;
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+    }
 
     public String getId() {
         return id;
@@ -22,7 +71,15 @@ public abstract class Lesson {
         this.id = id;
     }
 
-    // Outros gets e sets
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Lesson lesson = (Lesson) o;
+        return Objects.equals(id, lesson.id);
+    }
 
-    // Equals e hash code
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
