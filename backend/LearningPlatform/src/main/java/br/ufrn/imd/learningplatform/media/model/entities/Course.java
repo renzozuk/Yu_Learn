@@ -2,6 +2,7 @@ package br.ufrn.imd.learningplatform.media.model.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,13 +17,17 @@ public class Course {
     private String description;
     private String thumbnailUrl;
 
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Module> modules;
+
     public Course() {}
 
-    public Course(String id, String title, String description, String thumbnailUrl) {
+    public Course(String id, String title, String description, String thumbnailUrl, List<Module> modules) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
+        this.modules = modules;
     }
 
     public String getId() {
@@ -55,6 +60,10 @@ public class Course {
 
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public List<Module> getModules() {
+        return modules;
     }
 
     @Override
