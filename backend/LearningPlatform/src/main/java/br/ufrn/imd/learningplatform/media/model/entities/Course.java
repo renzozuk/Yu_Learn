@@ -6,7 +6,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "courses")
-
 public class Course {
 
     @Id
@@ -26,10 +25,12 @@ public class Course {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-
-
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -55,11 +56,6 @@ public class Course {
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
     }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
 
     @Override
     public boolean equals(Object o) {

@@ -11,6 +11,9 @@ public class LessonDTO implements Serializable {
     private String thumbnailUrl;
     private List<String> categories;
 
+    public LessonDTO() {
+    }
+
     public LessonDTO(String id, String title, String description, String thumbnailUrl, List<String> categories) {
         this.id = id;
         this.title = title;

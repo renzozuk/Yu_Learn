@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "lessons")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Lesson {
 
     @Id
@@ -21,14 +22,22 @@ public abstract class Lesson {
     @Column(name = "category")
     private List<String> categories;
 
+    @ManyToOne
+    private Module module;
+
     public Lesson() {}
 
-    public Lesson(String id, String title, String description, List<String> categories, String thumbnailUrl) {
+    public Lesson(String id, String title, String description, String thumbnailUrl, List<String> categories, Module module) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.categories = categories;
         this.thumbnailUrl = thumbnailUrl;
+        this.categories = categories;
+        this.module = module;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -67,8 +76,12 @@ public abstract class Lesson {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
     }
 
     @Override

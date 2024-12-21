@@ -1,11 +1,9 @@
 package br.ufrn.imd.learningplatform.media.services;
 
-import br.ufrn.imd.learningplatform.mapper.Mapper;
 import br.ufrn.imd.learningplatform.mapper.modelMapper.MyModelMapper;
 import br.ufrn.imd.learningplatform.media.model.dto.CourseDTO;
 import br.ufrn.imd.learningplatform.media.model.entities.Course;
 import br.ufrn.imd.learningplatform.media.repositories.CourseRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

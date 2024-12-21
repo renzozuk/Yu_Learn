@@ -2,6 +2,8 @@ package br.ufrn.imd.learningplatform.media.model.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,16 +18,18 @@ public class Module {
     private String description;
     private String thumbnailUrl;
 
+    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Lesson> lessons = new ArrayList<>();
 
     public Module() {}
 
-    public Module(String id, String title, String description, String thumbnailUrl) {
+    public Module(String id, String title, String description, String thumbnailUrl, List<Lesson> lessons) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
+        this.lessons = lessons;
     }
-
 
     public String getTitle() {
         return title;
@@ -59,6 +63,9 @@ public class Module {
         this.id = id;
     }
 
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
 
     @Override
     public boolean equals(Object o) {
