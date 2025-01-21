@@ -14,20 +14,30 @@ public class Module {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @Column
     private String title;
+
+    @Column
     private String description;
+
+    @Column(name = "thumbnailurl")
     private String thumbnailUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 
     @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Lesson> lessons = new ArrayList<>();
 
     public Module() {}
 
-    public Module(String id, String title, String description, String thumbnailUrl, List<Lesson> lessons) {
+    public Module(String id, String title, String description, String thumbnailUrl, Course course, List<Lesson> lessons) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
+        this.course = course;
         this.lessons = lessons;
     }
 
@@ -65,6 +75,18 @@ public class Module {
 
     public List<Lesson> getLessons() {
         return lessons;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
     }
 
     @Override

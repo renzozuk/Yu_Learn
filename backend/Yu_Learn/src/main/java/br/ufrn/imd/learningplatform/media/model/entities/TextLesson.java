@@ -14,8 +14,8 @@ public class TextLesson extends Lesson {
     public TextLesson() {
     }
 
-    public TextLesson(String id, String title, String description, List<String> categories, String thumbnailUrl, String pdfUrl) {
-        super(id, title, description, categories, thumbnailUrl);
+    public TextLesson(String id, String title, String description, String thumbnailUrl, List<String> categories, Module module, String pdfUrl) {
+        super(id, title, description, thumbnailUrl, categories, module);
         this.pdfUrl = pdfUrl;
     }
 

@@ -32,9 +32,9 @@ public class ModuleController {
 		return ResponseEntity.ok(module);
 	}
 
-	@PostMapping
-	public ResponseEntity<ModuleDTO> createModule(@RequestBody ModuleDTO moduleDTO) {
-		ModuleDTO createdModule = moduleService.save(moduleDTO);
+	@PostMapping(value = "/{courseId}")
+	public ResponseEntity<ModuleDTO> createModule(@PathVariable("courseId") String courseId, @RequestBody ModuleDTO moduleDTO) {
+		ModuleDTO createdModule = moduleService.save(courseId, moduleDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdModule);
 	}
 

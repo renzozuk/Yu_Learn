@@ -13,8 +13,11 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @Column
     private String title;
+    @Column
     private String description;
+    @Column(name = "thumbnailurl")
     private String thumbnailUrl;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
