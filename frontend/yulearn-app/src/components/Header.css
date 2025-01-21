@@ -51,6 +51,7 @@
 .header-navbar-link {
     color: #eeeeee;
     text-decoration: none;
+    cursor: default;
 }
 
 .search-input {
