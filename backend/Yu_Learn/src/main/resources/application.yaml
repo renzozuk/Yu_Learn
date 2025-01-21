@@ -4,7 +4,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: 1234567
+    password:
     url: jdbc:postgresql://localhost:5432/learning_platform_db
   jpa:
     hibernate:
@@ -30,8 +30,8 @@ cloud:
     aws:
         bucket-name: web-ii
         credentials:
-            access-key: AKIA2AUOOUH3GSIH4EW7
-            secret-key: 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
+            access-key: ${ACCESS}
+            secret-key: ${SECRET}
         region:
             static: sa-east-1
         stack:

@@ -14,8 +14,8 @@ public class VideoLesson extends Lesson {
     public VideoLesson() {
     }
 
-    public VideoLesson(String id, String title, String description, List<String> categories, String thumbnailUrl, String videoUrl) {
-        super(id, title, description, categories, thumbnailUrl);
+    public VideoLesson(String id, String title, String description, String thumbnailUrl, List<String> categories, Module module, String videoUrl) {
+        super(id, title, description, thumbnailUrl, categories, module);
         this.videoUrl = videoUrl;
     }
 

@@ -61,6 +61,10 @@ public class Question {
         this.questionnaire = questionnaire;
     }
 
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

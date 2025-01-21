@@ -14,9 +14,15 @@ public abstract class Lesson {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @Column
     private String title;
+
+    @Column
     private String description;
+
+    @Column(name = "thumbnail_url")
     private String thumbnailUrl;
+
     @ElementCollection
     @CollectionTable(name = "lesson_categories", joinColumns = @JoinColumn(name = "lesson_id"))
     @Column(name = "category")
@@ -25,7 +31,8 @@ public abstract class Lesson {
     @ManyToOne
     private Module module;
 
-    public Lesson() {}
+    public Lesson() {
+    }
 
     public Lesson(String id, String title, String description, String thumbnailUrl, List<String> categories, Module module) {
         this.id = id;
