@@ -14,13 +14,13 @@ export default function Catalog() {
 
     return (
         <div className="catalog-page">
-            {(mediaType == `all`) && <div className="section">
-                <p className="section-title">Cursos</p>
-                <ContentLine mediaType="courses" />
-            </div>}
             {(mediaType == `course`) && <div className="section">
+                <p className="section-title">Cursos</p>
+                <ContentLine mediaType="course" />
+            </div>}
+            {(mediaType == `module`) && <div className="section">
                 <p className="section-title">Módulos do curso</p>
-                <ContentLine mediaType="modules" />
+                <ContentLine mediaType="module" />
             </div>}
         </div>
     );

@@ -1,62 +1,44 @@
 import "./Watch.css";
 import React, { useState, useEffect } from "react";
-import { loadEpisodes, loadMovies } from "../util/Data";
+import { loadTextLessons, loadVideoLessons } from "../util/Data";
 import { useOutletContext, useParams } from "react-router-dom";
+import { Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
 
 export default function Watch() {
     const [width, setWidth] = useState(window.innerWidth * 0.75);
     const [subject, setSubject] = useState();
-    const [video, setVideo] = useState(null);
-    const [quiz, setQuiz] = useState();
+    const [media, setMedia] = useState(null);
+    /* const [questionnaire, setQuestionnaire] = useState(); */
 
     const { mediaType, mediaId } = useParams();
 
     const { updateTitle } = useOutletContext();
 
     useEffect(() => {
-        if (mediaType == `tvshow` || mediaType == `tvShow`) {
-            loadEpisodes().then((episodes) => {
-                for (let key in episodes) {
-                    if (episodes[key].id == mediaId) {
-                        updateTitle(episodes[key].title);
-                        setSubject(episodes[key].description);
-                        setVideo(episodes[key].videoUrl);
+        if (mediaType == `text_lesson`) {
+            loadTextLessons().then((text_lessons) => {
+                for (let key in text_lessons) {
+                    if (text_lessons[key].id == mediaId) {
+                        updateTitle(text_lessons[key].title);
+                        setSubject(text_lessons[key].description);
+                        setMedia(text_lessons[key].pdfUrl);
                     }
                 }
             });
         }
 
-        if (mediaType == `movie`) {
-            loadMovies().then((movies) => {
-                for (let key in movies) {
-                    if (movies[key].id == mediaId) {
-                        updateTitle(movies[key].title);
-                        setSubject(movies[key].description);
-                        setVideo(movies[key].videoUrl);
+        if (mediaType == `video_lesson`) {
+            loadVideoLessons().then((video_lessons) => {
+                for (let key in video_lessons) {
+                    if (video_lessons[key].id == mediaId) {
+                        updateTitle(video_lessons[key].title);
+                        setSubject(video_lessons[key].description);
+                        setMedia(video_lessons[key].videoUrl);
                     }
                 }
             });
         }
-
-        /*fetch(`http://localhost:8080/api/ask-llm-quiz`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                subject: subject,
-                source: video
-            })
-        })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Network answer was not ok.");
-            }
-            return response.json();
-        })
-        .then((response) => {
-            console.log(response);
-        });*/
 
         const handleResize = () => {
             setWidth(window.innerWidth * 0.75);
@@ -71,7 +53,11 @@ export default function Watch() {
 
     return (
         <div className="watch-page">
-            {localStorage.getItem("username") ? (video ? <video className="player-video" style={{ width: width, height: width / 1.7 }} src={video} controls autoPlay></video> : <p className="video-warning-text">Vídeo não encontrado.</p>) : <p className="video-warning-text">Você precisa estar logado para ter acesso ao conteúdo.</p>}
+            {localStorage.getItem("username") ? 
+            (media ?
+                (mediaType == `video_lesson` ? <video className="player-video" style={{ width: width, height: width / 1.7 }} src={media} controls autoPlay></video> : <Viewer fileUrl={media} />) : 
+            <p className="video-warning-text">Vídeo não encontrado.</p>) : 
+            <p className="video-warning-text">Você precisa estar logado para ter acesso ao conteúdo.</p>}
         </div>
     );
 }

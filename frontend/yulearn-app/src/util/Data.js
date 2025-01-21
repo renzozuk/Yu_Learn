@@ -9,7 +9,7 @@ class Course {
 }
 
 class Module {
-    constructor({ id, title, description, thumbnailUrl, animationUrl, episodes }) {
+    constructor({ id, title, description, thumbnailUrl, animationUrl, lessons }) {
         this.id = id;
         this.title = title;
         this.description = description;

@@ -12,7 +12,7 @@ export default function Header() {
                 {localStorage.getItem("username") ? 
                 <div className="header-buttons">
                     <div className="search-bar">
-                        <input className="search-input" style={{ width: "40vw" }}></input>
+                        <input className="search-input" style={{ width: window.innerWidth * 0.4 }}></input>
                         <div className="search-button"></div>
                     </div>
                     <button className="header-button">Sair</button>
