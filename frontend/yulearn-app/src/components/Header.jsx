@@ -6,13 +6,21 @@ export default function Header() {
     return (
         <div className="header">
             <div className="header-logotype">
-                {localStorage.getItem("username") ? <Link className="header-navbar-link" to="/catalog/all"><Logotype letterocolor={`#111111`} /></Link> : <Link className="header-navbar-link" to="/catalog/all"><Logotype letterocolor={`#111111`} /></Link>}
+                {localStorage.getItem("username") ? <Link className="header-navbar-link" to="/catalog/all"><Logotype yucolor={`#111111`} /></Link> : <Link className="header-navbar-link" to="/catalog/all"><Logotype yucolor={`#111111`} /></Link>}
             </div>
             <div className="header-buttons">
-                <button className="header-button"><Link className="header-navbar-link" to="/catalog/trending">Em destaque</Link></button>
-                <button className="header-button"><Link className="header-navbar-link" to="/catalog/tvshows">Séries</Link></button>
-                <button className="header-button"><Link className="header-navbar-link" to="/catalog/movies">Filmes</Link></button>
-                {localStorage.getItem("username") ? <button className="header-button">Meu perfil</button> : <button className="header-button"><Link className="header-navbar-link" to="/login">Entrar</Link></button>}
+                {localStorage.getItem("username") ? 
+                <div className="header-buttons">
+                    <div className="search-bar">
+                        <input className="search-input" style={{ width: "40vw" }}></input>
+                        <div className="search-button"></div>
+                    </div>
+                    <button className="header-button">Sair</button>
+                </div> : 
+                <div className="header-buttons">
+                    <button className="header-button"><Link className="header-navbar-link" to="/signup">Criar Conta</Link></button>
+                    <button className="header-button"><Link className="header-navbar-link" to="/login">Entrar</Link></button>
+                </div>}
             </div>
         </div>
     );

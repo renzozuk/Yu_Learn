@@ -10,28 +10,17 @@ export default function Catalog() {
 
     useEffect(() => {
         updateTitle("Catálogo");
-
-        if (mediaType == `trending`) {
-            updateTitle("Em destaque");
-            document.title = `Em destaque`;
-        } else if (mediaType == `tvshows`) {
-            document.title = `Séries`;
-        } else if (mediaType == `movies`) {
-            document.title = `Filmes`;
-        } else {
-            document.title = `Catálogo`;
-        }
     });
 
     return (
         <div className="catalog-page">
-            {(mediaType == `all` || mediaType == `tvshows`) && <div className="section">
-                <p className="section-title">Séries</p>
-                <ContentLine mediaType="tvshow" />
+            {(mediaType == `all`) && <div className="section">
+                <p className="section-title">Cursos</p>
+                <ContentLine mediaType="courses" />
             </div>}
-            {(mediaType == `all` || mediaType == `movies`) && <div className="section">
-                <p className="section-title">Filmes</p>
-                <ContentLine mediaType="movie" />
+            {(mediaType == `course`) && <div className="section">
+                <p className="section-title">Módulos do curso</p>
+                <ContentLine mediaType="modules" />
             </div>}
         </div>
     );
