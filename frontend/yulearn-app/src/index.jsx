@@ -6,7 +6,6 @@ import App from "./App.jsx";
 import Catalog from "./pages/Catalog.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import Login from "./pages/Login.jsx";
-import Showcase from "./pages/Showcase.jsx";
 import Signup from "./pages/Signup.jsx";
 import Subscription from "./pages/Subscription.jsx";
 import Watch from "./pages/Watch.jsx";
@@ -39,10 +38,6 @@ const router = createBrowserRouter([
             {
                 path: "/watch/:mediaType/:mediaId",
                 element: <Watch />
-            },
-            {
-                path: "/showcase/:tvShowId",
-                element: <Showcase />
             }
         ]
     },

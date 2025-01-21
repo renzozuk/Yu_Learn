@@ -56,14 +56,14 @@
     height: 50px;
     border-radius: 35px;
     font-size: 105%;
-    font-weight: 400;
+    font-weight: 650;
     outline: none;
     border: none;
-    background-color: #bb1111;
-    color: #ffffff;
+    background-color: #fff100;
+    color: #333333;
     cursor: pointer;
 }
 
 .submit-button:hover {
-    background-color: #a10505;
+    background-color: #d1c602;
 }

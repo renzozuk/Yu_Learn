@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.ufrn.imd</groupId>
-    <artifactId>Yu_Learn</artifactId>
+    <artifactId>yulearn</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>LearningPlatform</name>
-    <description>LearningPlatform</description>
+    <name>Yulearn</name>
+    <description>Yulearn</description>
     <url/>
     <licenses>
         <license/>
