@@ -1,0 +1,5 @@
+CREATE TABLE answers (
+    id TEXT PRIMARY KEY UNIQUE NOT NULL,
+    is_correct BOOLEAN NOT NULL,
+    content TEXT NOT NULL
+);

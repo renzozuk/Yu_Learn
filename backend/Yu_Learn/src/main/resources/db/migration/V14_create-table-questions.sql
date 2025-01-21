@@ -1,0 +1,4 @@
+CREATE TABLE questions (
+    id TEXT PRIMARY KEY UNIQUE NOT NULL,
+    content TEXT NOT NULL
+);

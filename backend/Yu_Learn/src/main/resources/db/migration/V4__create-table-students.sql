@@ -1,0 +1,3 @@
+CREATE TABLE students (
+    id TEXT PRIMARY KEY UNIQUE NOT NULL REFERENCES users(id)
+);
