@@ -10,6 +10,9 @@ public class CourseDTO implements Serializable {
     private String description;
     private String thumbnailUrl;
 
+    public CourseDTO() {
+    }
+
     public CourseDTO(String id, String title, String description, String thumbnailUrl) {
         this.id = id;
         this.title = title;

@@ -1,9 +1,10 @@
 package br.ufrn.imd.yulearn.media.services;
 
-import br.ufrn.imd.yulearn.mapper.modelMapper.MyModelMapper;
-import br.ufrn.imd.yulearn.media.model.dto.ModuleDTO;
-import br.ufrn.imd.yulearn.media.model.entities.Module;
-import br.ufrn.imd.yulearn.media.repositories.ModuleRepository;
+import br.ufrn.imd.learningplatform.mapper.modelMapper.MyModelMapper;
+import br.ufrn.imd.learningplatform.media.model.dto.ModuleDTO;
+import br.ufrn.imd.learningplatform.media.model.entities.Module;
+import br.ufrn.imd.learningplatform.media.repositories.CourseRepository;
+import br.ufrn.imd.learningplatform.media.repositories.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +12,16 @@ import java.util.List;
 
 @Service
 public class ModuleService {
-	
+
+	private final CourseRepository courseRepository;
 	private ModuleRepository moduleRepository;
 	private MyModelMapper myModelMapper;
 
 	@Autowired
-	public ModuleService(ModuleRepository moduleRepository, MyModelMapper myModelMapper) {
+	public ModuleService(ModuleRepository moduleRepository, MyModelMapper myModelMapper, CourseRepository courseRepository) {
 		this.moduleRepository = moduleRepository;
 		this.myModelMapper = myModelMapper;
+		this.courseRepository = courseRepository;
 	}
 
 	public List<ModuleDTO> findAll() {
@@ -34,8 +37,20 @@ public class ModuleService {
 		return myModelMapper.convertValue(module, ModuleDTO.class);
 	}
 
-	public ModuleDTO save(ModuleDTO moduleDTO) {
+	public ModuleDTO save(String courseId, ModuleDTO moduleDTO) {
+
+		var course = courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("Course not found"));
+
 		var module = myModelMapper.convertValue(moduleDTO, Module.class);
+
+		module.setCourse(course);
+
+		module = moduleRepository.save(module);
+
+		course.getModules().add(module);
+
+		courseRepository.save(course);
+
 		return myModelMapper.convertValue(moduleRepository.save(module), ModuleDTO.class);
 	}
 
