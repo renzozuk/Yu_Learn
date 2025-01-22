@@ -11,7 +11,7 @@ export default function ContentCell(props) {
             {props.mediaType == `course` && <Link to={`/showcase/${props.id}`}>
                 <img className="content-cell-image" onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} src={(props.thumbnail || noImageLink)}></img>
             </Link>}
-            {props.mediaType == `module` && <Link to={`/watch/movie/${props.id}`}>
+            {props.mediaType == `module` && <Link to={`/showcase/${props.id}`}>
                 <img className="content-cell-image" onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave} src={(props.thumbnail || noImageLink)}></img>
             </Link>}
         </div>

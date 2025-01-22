@@ -38,7 +38,11 @@ const router = createBrowserRouter([
             {
                 path: "/watch/:mediaType/:mediaId",
                 element: <Watch />
-            }
+            },
+            /* {
+                path: "/showcase/:productId",
+                element <Showcase />
+            } */
         ]
     },
 ]);

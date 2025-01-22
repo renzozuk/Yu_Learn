@@ -52,7 +52,7 @@ export default function Login() {
     };
 
     useEffect(() => {
-        document.title = `Login | Blockburst`;
+        document.title = `Login | YuLearn`;
         updateTitle(`Login`);
     });
 

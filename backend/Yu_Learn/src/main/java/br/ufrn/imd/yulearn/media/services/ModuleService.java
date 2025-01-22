@@ -1,10 +1,10 @@
 package br.ufrn.imd.yulearn.media.services;
 
-import br.ufrn.imd.learningplatform.mapper.modelMapper.MyModelMapper;
-import br.ufrn.imd.learningplatform.media.model.dto.ModuleDTO;
-import br.ufrn.imd.learningplatform.media.model.entities.Module;
-import br.ufrn.imd.learningplatform.media.repositories.CourseRepository;
-import br.ufrn.imd.learningplatform.media.repositories.ModuleRepository;
+import br.ufrn.imd.yulearn.mapper.modelMapper.MyModelMapper;
+import br.ufrn.imd.yulearn.media.model.dto.ModuleDTO;
+import br.ufrn.imd.yulearn.media.model.entities.Module;
+import br.ufrn.imd.yulearn.media.repositories.CourseRepository;
+import br.ufrn.imd.yulearn.media.repositories.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

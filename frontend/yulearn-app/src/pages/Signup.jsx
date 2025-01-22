@@ -58,7 +58,7 @@ export default function Signup() {
     };
 
     useEffect(() => {
-        document.title = `Criar Conta | Blockburst`;
+        document.title = `Criar Conta | YuLearn`;
         updateTitle(`Criar Conta`);
     });
 
